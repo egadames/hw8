@@ -7,6 +7,8 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
+const writeFile = require('./lib/writeFile');
+
 // ​const prompt = require("./lib/prompt");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -43,13 +45,15 @@ function partialTeamPrompt() {
         case "Done":
            const bigfuckingString = render(employees);
            console.log(bigfuckingString);
+        //    writeFile("output.html", bigfuckingString);
+           fs.writeFileSync(outputPath,bigfuckingString,"UTF8")
         break;
       }
     });
 }
 
 function managerPrompt() {
-  return inquirer.prompt([
+ return inquirer.prompt([
     {
       type: "input",
       name: "managerName",
