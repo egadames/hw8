@@ -2,27 +2,23 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const writeFile = require('./lib/writeFile');
 
-// ​const prompt = require("./lib/prompt");
+// const prompt = require('./lib/prompt');
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-function fullTeamPrompt() {
-  return inquirer.prompt([
-    {
-      type: "checkbox",
-      name: "teamMember",
-      message: "What type of team member would you like to add?",
-      choices: ["Manager", "Engineer", "Intern", "None"],
-    },
-  ]);
-}
+// function fullTeamPrompt() {
+//   return inquirer.prompt([
+//     {
+//       type: "checkbox",
+//       name: "teamMember",
+//       message: "What type of team member would you like to add?",
+//       choices: ["Manager", "Engineer", "Intern", "None"],
+//     },
+//   ]);
+// }
 
 function partialTeamPrompt() {
   inquirer
@@ -41,12 +37,13 @@ function partialTeamPrompt() {
           break;
         case "Intern":
             internPrompt();
+            // prompt(employees);
         break;
         case "Done":
+            console.log(employees)
            const bigfuckingString = render(employees);
            console.log(bigfuckingString);
-        //    writeFile("output.html", bigfuckingString);
-           fs.writeFileSync(outputPath,bigfuckingString,"UTF8")
+           writeFile(bigfuckingString);
         break;
       }
     });
@@ -140,7 +137,7 @@ function internPrompt() {
       answers.internName,
       answers.internId,
       answers.internEmail,
-      answers.internUserName
+      answers.internSchool
     );
     employees.push(intern);
     partialTeamPrompt();
