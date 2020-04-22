@@ -46,7 +46,7 @@
 
 ## Screenshots
 
-![app screenshot](.img/screenshot.JPG)
+![app screenshot](https://github.com/egadames/hw8/blob/master/img/screenshot.JPG)
 
 ## Questions
 
